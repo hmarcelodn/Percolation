@@ -6,10 +6,12 @@
  * This class uses Quick-Union-Find Algorithm without path compression
  * and performs dynamic connectivity until the system percolates
  * 
- * Hugo Marcelo Del Negro.
+ * Author: Hugo Marcelo Del Negro.
  * 
- * Quick-Union Algotithm
- * Percolation analysis
+ * Description:
+ * 
+ * Weighted-Quick-Union-Find Algorithm (Improved to avoid brute force)
+ * Percolation Analisys
  *
  ****************************************************************************/
 
@@ -107,31 +109,24 @@ public class Percolation {
     public boolean isFull(int i, int j){
         validate(i ,j);
         
-        if(!isOpen(i, j)) return false;
-        
-        StdOut.print("Start is full!");
+        if(!isOpen(i, j)) { 
+            return false;
+        }
         
         StdOut.print("i -> " + i + " j -> " + j + "\n");
         
         int currentSite = xyTo1D(i, j) + 1;        
         int currentSiteRoot = find(currentSite);        
         
-        StdOut.print("Site -> " + currentSite + " Root -> " + currentSiteRoot + "\n");
-        //print();
-              
-       StdOut.print("End is full!");
+        StdOut.print("Site -> " + currentSite + " Root -> " + currentSiteRoot + "\n");             
        
-        return currentSiteRoot == find(grid1D[virtualBottom]) && currentSiteRoot == find(grid1D[virtualTop]);
-        
-        
-        //return currentSiteRoot == virtualBottom && currentSiteRoot == virtualTop;
+        return currentSiteRoot == find(grid1D[virtualBottom]) && currentSiteRoot == find(grid1D[virtualTop]);        
     }     
     
     // does the system percolate?
     // Constant Calls to Find Method
     public boolean percolates(){        
-        StdOut.print("Percolates?\n");
-        
+        StdOut.print("Percolates?\n");        
         StdOut.print("Virtual Bottom Index ->" + find(grid1D[virtualBottom]) + "\n");
         StdOut.print("Virtual Top Index -> " + find(grid1D[virtualTop]) + "\n");
         
@@ -169,9 +164,7 @@ public class Percolation {
             else{
                 StdOut.print("\nAlready Connected!!!" + (currentSite + 1) + " " + (adjacentSite + 1) + "\n");
             }
-        }
-        
-        //print();
+        }        
     }
     
     // join 2 components
@@ -198,5 +191,6 @@ public class Percolation {
     
     // test client (optional)
     public static void main(String[] args){
+        // TODO: Empty
     }   
 }
